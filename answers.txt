@@ -1,0 +1,429 @@
+1.what is J.D.K---
+--->JDK: Java Development Kit
+JDK is an acronym for Java Development Kit. The Java Development Kit (JDK) is a software development environment which is used to develop java applications and applets. It physically exists. It contains JRE and development tools.
+
+JDK is an implementation of any one of the below given Java Platforms released by Oracle corporation:
+--Standard Edition Java Platform
+--Enterprise Edition Java Platform
+--Micro Edition Java Platform
+The JDK contains a private Java Virtual Machine (JVM) and a few other resources such as an interpreter/loader (Java), a compiler (javac), an archiver (jar), a documentation generator (Javadoc) etc. to complete the development of a Java Application.
+
+2.what is J.R.E---
+---> Java Run-time Environment (JRE) is the part of the Java Development Kit (JDK). It is a freely available software distribution which has Java Class Library, specific tools, and a stand-alone JVM. The source Java code gets compiled and converted to Java bytecode. If you want to run this bytecode on any platform, you require JRE. The JRE loads classes, verify access to memory, and retrieves the system resources. 
+
+What does JRE consist of?
+JRE consists of the following components:
+
+Deployment technologies such as deployment, Java plug-in, and Java Web Start.
+--User interface toolkits, including Abstract Window Toolkit (AWT), Swing, Java 2D, Accessibility, Image I/O, Print Service, Sound, drag, and drop (DnD) and input methods.
+--Integration libraries including Java Database Connectivity (JDBC), Java Naming and Directory Interface (JNDI), Remote Method Invocation (RMI).
+--Other base libraries, including input/output (I/O),Java Management Extensions (JMX), Java Native Interface (JNI).
+--Lang and util base libraries, including lang and util, zip, Java Archive (JAR).
+--Java Virtual Machine (JVM), which comprise of Server Virtual Machine and Java HotSpot Client.
+
+3.what is J.V.M?
+--->JVM (Java Virtual Machine) is an abstract machine. It has no physical existence.It is a specification that provides runtime environment in which java bytecode can be executed.
+
+JVMs are available for many hardware and software platforms (i.e. JVM is platform dependent).
+It is:
+    --a specification where working of Java Virtual Machine is specified. But implementation provider is independent to choose the algorithm. Its implementation has been provided by Oracle and other companies.
+--An implementation Its implementation is known as JRE (Java Runtime Environment).
+--Runtime Instance Whenever you write java command on the command prompt to run the java class, an instance of JVM is created.
+
+The JVM performs following operation:
+--Loads code
+--Verifies code
+--Executes code
+--Provides runtime environment
+JVM Architecture
+Let's understand the internal architecture of JVM. It contains classloader, memory area, execution engine etc.
+
+JVM Architecture
+
+1) Classloader
+Classloader is a subsystem of JVM which is used to load class files. Whenever we run the java program, it is loaded first by the classloader. There are three built-in classloaders in Java.
+
+--Bootstrap ClassLoader: This is the first classloader which is the super class of Extension classloader. It loads the rt.jar file which contains all class files of   Java   Standard Edition like java.lang package classes, java.net package classes, java.util package classes, java.io package classes, java.sql package classes etc.
+--Extension ClassLoader: This is the child classloader of Bootstrap and parent classloader of System classloader. It loades the jar files located inside       $JAVA_HOME/jre/lib/ext directory.
+--System/Application ClassLoader: This is the child classloader of Extension classloader. It loads the classfiles from classpath. By default, classpath is set to   current   directory. You can change the classpath using "-cp" or "-classpath" switch. It is also known as Application classloader.
+//Let's see an example to print the classloader name  
+public class ClassLoaderExample  
+{  
+    public static void main(String[] args)  
+    {  
+        // Let's print the classloader name of current class.   
+        //Application/System classloader will load this class  
+        Class c=ClassLoaderExample.class;  
+        System.out.println(c.getClassLoader());  
+        //If we print the classloader name of String, it will print null because it is an  
+        //in-built class which is found in rt.jar, so it is loaded by Bootstrap classloader  
+        System.out.println(String.class.getClassLoader());  
+    }  
+}     
+
+These are the internal classloaders provided by Java. If you want to create your own classloader, you need to extend the ClassLoader class.
+
+2) Class(Method) Area
+Class(Method) Area stores per-class structures such as the runtime constant pool, field and method data, the code for methods.
+
+3) Heap
+It is the runtime data area in which objects are allocated.
+
+4) Stack
+Java Stack stores frames. It holds local variables and partial results, and plays a part in method invocation and return.
+
+Each thread has a private JVM stack, created at the same time as thread.
+
+A new frame is created each time a method is invoked. A frame is destroyed when its method invocation completes.
+
+5) Program Counter Register
+PC (program counter) register contains the address of the Java virtual machine instruction currently being executed.
+
+6) Native Method Stack
+It contains all the native methods used in the application.
+
+7) Execution Engine
+It contains:
+
+--A virtual processor
+--Interpreter: Read bytecode stream then execute the instructions.
+--Just-In-Time(JIT) compiler: It is used to improve the performance. JIT compiles parts of the byte code that have similar functionality at the same time, and hence  reduces the amount of time needed for compilation. Here, the term "compiler" refers to a translator from the instruction set of a Java virtual machine (JVM) to the  instruction set of a specific CPU.
+8) Java Native Interface:
+ Java Native Interface (JNI) is a framework which provides an interface to communicate with another application written in another language like C, C++, Assembly etc.  Java uses JNI framework to send output to the Console or interact with OS libraries.
+
+4.what is Classloader?
+-->Java ClassLoader is an abstract class. It belongs to a java.lang package.It is a subsystem of JVM. It loads classes from different resources. Java ClassLoader is used to load the classes at run time. In other words, JVM performs the linking process at runtime. Classes are loaded into the JVM according to need. If a loaded class depends on another class, that class is loaded as well. When we request to load a class, it delegates the request to its parent. In this way, uniqueness is maintained in the runtime environment.
+Java ClassLoader is based on three principles: Delegation, Visibility, and Uniqueness.
+--Delegation principle: It forwards the request for class loading to parent class loader. It only loads the class if the parent does not find or load the class.
+--Visibility principle: It allows child class loader to see all the classes loaded by parent ClassLoader. But the parent class loader cannot see classes loaded by the   child class loader.
+--Uniqueness principle: It allows to load a class once. It is achieved by delegation principle. It ensures that child ClassLoader doesn't reload the class, which is   already loaded by the parent.   ----->diagram of three principles<-----
+
+5.what is Association in Java?
+-->Association in Java defines the connection between two classes that are set up through their objects. In Java, the multiplicity between objects is defined by the Association. It shows how objects communicate with each other and how they use the functionality and services provided by that communicated object. Association manages one-to-one, one-to-many, many-to-one and many-to-many relationships.
+
+Association in Java
+Let's take an example of each relationship to manage by the Association.
+
+--A person can have only one passport. It defines the one-to-one
+--If we talk about the Association between a College and Student, a College can have many students. It defines the one-to-many
+--A state can have several cities, and those cities are related to that single state. It defines the many-to-one
+--A single student can associate with multiple teachers, and multiple students can also be associated with a single teacher. Both are created or deleted independently,   so it defines the many-to-many
+
+Let's takes an example of an Association to understand how it works in Java.
+AssociationExample.java
+import java.util.*;   
+ class Mobile {    
+    private String mobile_no;  
+    
+    public String getMobileNo() {  
+        return mobile_no;  
+    }  
+    public void setMobileNo(String mobile_no) {  
+        this.mobile_no = mobile_no;  
+    }  
+}  
+class Person {       
+    private String name;  
+    List<Mobile> numbers;  
+    public String getName() {  
+        return name;  
+    }  
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+    public List<Mobile> getNumbers() {  
+        return numbers;  
+    }  
+    public void setNumbers(List<Mobile> numbers) {  
+        this.numbers = numbers;  
+    }  
+}  
+public class AssociationExample {  
+      public static void main(String[] args) {  
+            Person person = new Person();  
+            person.setName("Shubham Rastogi");  
+             
+           Mobile number1 = new Mobile();  
+            number1.setMobileNo("8868923136");  
+            Mobile number2 = new Mobile();  
+            number2.setMobileNo("8630023310");  
+      
+            List<Mobile> numberList = new ArrayList<Mobile>();  
+            numberList.add(number1);  
+            numberList.add(number2);  
+            person.setNumbers(numberList);  
+            System.out.println(person.getNumbers()+" are mobile numbers of the person "+  
+            person.getName());  
+        }  
+        
+ } 
+Types of Association
+In Java, two types of Association are possible:
+--IS-A Association
+--HAS-A Association
+1) IS-A Association
+The IS-A Association is also referred to as Inheritance. 
+
+2) HAS-A Association
+The HAS-A Association is further classified into two parts, i.e., Aggregation and Composition. Let's understand the difference between both of them one by one.
+
+6.what is Aggregation?
+--> In Java, the Aggregation association defines the HAS-A relationship. Aggregation follows the one-to-one or one-way relationship. If two entities are in the aggregation composition, and one entity fails due to some error, it will not affect the other entity.
+
+Let's take the example of a toy and its battery. The battery belongs to a toy, and if the toy breaks and deletes from our database, the battery will still remaining in our database, and it may still be working.
+AggregationExample
+
+import java.util.*;   
+    
+// Student class   
+class Student    
+{   
+    String name;   
+    int enrol ;   
+    String course;   
+        
+    Student(String name, int enrol, String course)    
+    {   
+            
+        this.name = name;   
+        this.enrol = enrol;   
+        this.course = course;   
+    }   
+}   
+    
+// Course class having a list of students.  
+class course    
+{   
+      
+    String name;   
+    private List<Student> students;   
+    Course(String name, List<Student> students)    
+    {   
+            
+        this.name = name;   
+        this.students = students;   
+            
+    }   
+        
+    public List<Student> studentsData()    
+    {   
+        return students;   
+    }   
+}   
+    
+/* College class having a list of Courses*/  
+class College  
+{   
+        
+    String collegeName;   
+    private List<Course> courses;   
+        
+    College(String collegeName, List<Course> courses)   
+    {   
+        this.collegeName = collegeName;   
+        this.courses = courses;   
+    }   
+        
+    // Returning number of students available in all courses in a given college    
+    public int countStudents()   
+    {   
+        int studentsInCollege = 0;   
+        List<Student> students;    
+        for(Course course : courses)   
+        {   
+            students = course.studentsData();   
+            for(Student s : students)   
+            {   
+                studentsInCollege++;   
+            }   
+        }   
+        return studentsInCollege;   
+    }   
+        
+}    
+    
+// main method   
+class AggregationExample  
+{   
+    public static void main (String[] args)    
+    {   
+        Student std1 = new Student("Emma", 1801, "MCA");   
+        Student std2 = new Student("Adele", 1802, "BSC-CS");   
+        Student std3 = new Student("Aria", 1803, "Poly");   
+        Student std4 = new Student("Ally", 1804, "MCA");   
+        Student std5 = new Student("Paul", 1805, "Poly");         
+          
+        // Constructing list of MCA Students.   
+        List <Student> mca_students = new ArrayList<Student>();   
+        mca_students.add(std1);   
+        mca_students.add(std4);   
+            
+        //Constructing list of BSC-CS Students.   
+        List <Student> bsc_cs_students = new ArrayList<Student>();   
+        bsc_cs_students.add(std2);   
+          
+        //Constructing list of Poly Students.   
+        List <Student> poly_students = new ArrayList<Student>();   
+        poly_students.add(std3);   
+        poly_students.add(std5);   
+            
+        Course MCA = new Course("MCA", mca_students);   
+        Course BSC_CS = new Course("BSC-CS", bsc_cs_students);  
+        Course Poly = new Course("Poly", poly_students);   
+            
+        List <Course> courses = new ArrayList<Course>();   
+        courses.add(MCA);   
+        courses.add(BSC_CS);  
+        courses.add(Poly);   
+            
+        // creating object of College.   
+        College college = new College("ABES", courses);   
+          
+        System.out.print("Total number of students in the college "+ college.collegeName +" is "+ college.countStudents());  
+    }   
+}  
+Description:
+In the above example, there is a college that has several courses like BSC-CS, MCA, and Poly. Every course has several students, so we make a College class that has a reference to the object or list of objects of the Course class. That means College class is associated with Course class through the objects. Course class also has a reference to the object or list of objects of Student class means it is associated with Student class through its object and defines the HAS-A relationship.
+
+7.what is Composition?
+-->A restricted form of the Aggregation where the entities are strongly dependent on each other. Unlike Aggregation, Composition represents the part-of relationship. When there is an aggregation between two entities, the aggregate object can exist without the other entity, but in the case of Composition, the composed object can't exist. To learn more about Composition, click here.
+
+Let's take an example to understand the concept of Composition.
+
+We create a class Mobile that contains variables, i.e., name, ram and rom. We also create a class MobileStore that has a reference to refer to the list of mobiles. A mobile store can have more than one mobile. So, if a mobile store is destroyed, then all mobiles within that particular mobile store will also be destroyed because mobiles cannot exist without a mobile store. The relationship between the mobile store and mobiles is Composition.
+
+CompositionExample.java:
+
+import java.util.*;  
+class Mobile  
+{  
+  public String name;  
+  public String ram;  
+  public String rom;  
+  Mobile(String Name, String ram, String rom  
+  {  
+    this.name = name;  
+    this.ram = ram;  
+    this.rom = rom;  
+  }  
+}  
+class MobileStore  
+{  
+  private final List<Mobile> mobiles;  
+  MobileStore (List<Mobile> mobiles)  
+  {  
+    this.mobiles = mobiles;  
+  }  
+  public List<Mobile> getTotalMobileInStore(){  
+    return mobiles;  
+  }  
+}  
+public class CompositionExample {  
+  public static void main (String[] args)  
+  {  
+    Mobile mob1 = new Mobile("Realme6","8GB", "128GB");  
+    Mobile mob2 = new Mobile("SAMSUNG A21S", "4GB", "128");  
+    Mobile mob3 = new Mobile("SAMSUNG M10", "4GB", "64GB");  
+    List<Mobile> mobiles = new ArrayList<Mobile>();  
+    mobiles.add(mob1);  
+    mobiles.add(mob2);  
+    mobiles.add(mob3);  
+    MobileStore store = new MobileStore(mobiles);  
+    List<Mobile> mob = store.getTotalMobileInStore();  
+    for(Mobile mb : mob){  
+      System.out.println("Name : " + mb.name + " RAM :" +mb.ram + " and "  
+          +" ROM : " + mb.rom);  
+    }  
+  }  
+}  
+
+8.what is Constructor Chaining?
+-->In Java, constructor chaining is a sequence of invoking constructors upon initializing an object. It is used when we want to invoke a number of constructors, one after another by using only an instance.
+Constructor:
+In Java, a constructor is the same as a method but the only difference is that the constructor has the same name as the class name. It is used to create an instance of the class. It is called automatically when we create an object of the class. It has no return type. Remember that a constructor cannot be abstract, final, synchronized, and static. We cannot override a constructor.
+
+There are two types of constructor in Java:
+--Default Constructor (also known as a no-argument constructor)
+--Parameterized Constructor
+--Constructor Chaining:
+In constructor chaining, a constructor is called from another constructor in the same class this process is known as constructor chaining. It occurs through inheritance. When we create an instance of a derived class, all the constructors of the inherited class (base class) are first invoked, after that the constructor of the calling class (derived class) is invoked.
+
+We can achieve constructor chaining in two ways:
+--Within the same class: If the constructors belong to the same class, we use this
+--From the base class: If the constructor belongs to different classes (parent and child classes), we use the super() keyword to call the constructor from the base class.
+Remember that changing the order of the constructor does not affect the output.
+
+9.what is the need of Constructor Chaining?
+-->Suppose, there are five tasks to perform. There are two ways to perform these tasks, either implement all the tasks in a single constructor or create separate tasks in a single constructor.
+
+By using the constructor chaining mechanism, we can implement multiple tasks in a single constructor. So, whenever we face such types of problems, we should use constructor chaining. We can make the program more readable and understandable by using constructor chaining.
+
+Rules of Constructor Chaining
+An expression that uses this keyword must be the first line of the constructor.
+Order does not matter in constructor chaining.
+There must exist at least one constructor that does not use this
+Constructor Calling form another Constructor
+The calling of the constructor can be done in two ways:
+By using this() keyword: It is used when we want to call the current class constructor within the same class.
+By using super() keyword: It is used when we want to call the superclass constructor from the base class.
+
+--->Constructor Chaining Examples
+--Calling Current Class Constructor
+We use this() keyword if we want to call the current class constructor within the same class. The use of this() is mandatory because JVM never put it automatically like the super() keyword. Note that this() must be the first line of the constructor. There must exist at least one constructor without this() keyword.
+--Calling Super Class Constructor
+Sometimes, we need to call the superclass (parent class) constructor from the child class (derived class) in such cases, we use the super() keyword in the derived class constructor. It is optional to write super() because JVM automatically puts it. It should always write in the first line. We get a syntax error if we try to call a superclass constructor in the child class.
+Syntax:
+super(); or super(Parameter List);  
+super(): It calls the no-argument or default constructor of the superclass.
+super(parameters): It invokes the superclass parameterized constructor.
+Let's create a Java program and implement constructor chaining in an inherited class.
+
+ConstructorChaining.java
+
+//parent class or base class  
+class Demo  
+{  
+//base class default constructor  
+Demo()  
+{  
+this(80, 90);  
+System.out.println("Base class default constructor called");  
+}  
+//base class parameterized constructor  
+Demo(int x, int y)  
+{  
+System.out.println("Base class parameterized constructor called");  
+}  
+}  
+//derived class or child class  
+class Prototype extends Demo  
+{  
+//derived class default constructor  
+Prototype()  
+{  
+this("Java", "Python");  
+System.out.println("Derived class default constructor called");  
+}  
+//derived class parameterized constructor  
+Prototype(String str1, String str2)  
+{  
+super();  
+System.out.println("Derived class parameterized constructor called");  
+}  
+}  
+public class ConstructorChaining  
+{  
+//main method  
+public static void main(String args[])   
+{   
+//initializes the instance of example class  
+Prototype my_example = new Prototype();  
+}   
+}  
+Output:--baseclass parameterized constr called
+         baseclass default constructr called
+         derivedclass parameteriz constructr called
+         derivedclass default constuctr called
+
+10.what is ur biggest challenge in work?
+-->In my previous project as a Java developer, one of the biggest challenges I faced was ensuring the reliability and scalability of the application. The project involved developing a complex software system that handled a large volume of data and user requests. To address this challenge, I had to carefully consider the system's architecture, choose appropriate data structures and algorithms, and implement robust testing and monitoring mechanisms
