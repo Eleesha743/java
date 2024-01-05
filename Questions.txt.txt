@@ -1,0 +1,39 @@
+1.what is JDK?
+2.what is JRE?
+3.what is JVM?
+--->types of variables and methods?
+4.what is classloader?Types of classloaders?
+5.what is association?
+6.what is aggregation?
+7.what is composition?
+8.what is constructor chaining?
+9.what is need of constructor chaining?
+10.what is ur bigger challenge in work?
+11.why work not submitted on time?
+12.what are access modifiers?
+13.what is serialization?
+14.what is deserialization?
+15.design patterns---
+--i.singleton design pattern
+--ii.abstract factory design pattern
+--iii.factory design pattern
+--iv.builder design pattern
+16.OOPs concepts-->
+  i.data hiding
+  ii.method overloading(compile time polymorphism)
+  iii.method overriding(run-time polymorphism)
+  v.method hiding  
+  vi.Encapsulation
+  v.Abstraction   
+  vi.Interface  
+17.Explain about Static keyword?
+18.what is exception?
+19.how can handle exceptions?
+20.two types of exceptions?
+21.differences and examples of checked, unchecked
+22.hierarchy of exception?
+23.difference btw exception and error?
+24.what is stackoverflowerror?
+25.difference btw noclassdeffounderror and classnotfoundexception?
+26.diff btw throw and throws?
+27.diff btw final,finally,finalize?
