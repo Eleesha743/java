@@ -1,0 +1,230 @@
+1.lambda expressions?
+-->A lambda expression is a short block of code which takes in parameters and returns a value. Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
+interface Addable{
+int add(int a,int b);
+}
+public class LambdaExpressionExample6 {
+public static void main(String[] args) {
+// Lambda expression without return keyword.
+Addable ad1=(a,b)->(a+b);
+System.out.println(ad1.add(10,20));
+
+2.method reference?
+-->Java provides a new feature called method reference in Java 8. Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression. Each time when you are using lambda expression to just referring a method, you can better replace your lambda expression with method reference.
+Types of Method References
+There are following types of method references in java:
+--Reference to a static method.
+--Reference to an instance method.
+--Reference to a constructor.
+
+3.optional class?
+--The Optional class in Java 8 is a container object which is used to contain a value that might or might not be present. It was introduced as a way to help reduce the number of NullPointerExceptions that occur in Java code. It is a part of the java.util package. 
+It can help in writing a neat code without using too many null checks.
+ By using Optional, we can specify alternate values to return or alternate code to run. 
+This makes the code more readable.
+import java.util.Optional;
+ 
+class GFG {
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+ 
+        // creating a string array
+        String[] str = new String[5];
+ 
+        // Setting value for 2nd index
+        str[2] = "Geeks Classes are coming soon";
+ 
+        // It returns an empty instance of Optional class
+        Optional<String> empty = Optional.empty();
+        System.out.println(empty);
+ 
+        // It returns a non-empty Optional
+        Optional<String> value = Optional.of(str[2]);
+        System.out.println(value);
+    }
+}
+
+4.Functional interface?
+-->A functional interface is an interface that contains only one abstract method. They can have only one functionality to exhibit. From Java 8 onwards, lambda expressions can be used to represent the instance of a functional interface. A functional interface can have any number of default methods. Runnable, ActionListener, and Comparable are some of the examples of functional interfaces. 
+@FunctionalInterface
+ 
+interface Square {
+    int calculate(int x);
+}
+ 
+class Test {
+    public static void main(String args[])
+    {
+        int a = 5;
+ 
+        // lambda expression to define the calculate method
+        Square s = (int x) -> x * x;
+ 
+        // parameter passed and return type must be
+        // same as defined in the prototype
+        int ans = s.calculate(a);
+        System.out.println(ans);
+    }
+}
+
+Output
+25
+
+5.Date API?
+-->New date-time API is introduced in Java 8 to overcome the following drawbacks of old date-time API : 
+Not thread safe : Unlike old java.util.Date which is not thread safe the new date-time API is immutable and doesn’t have setter methods.
+Less operations : In old API there are only few date operations but the new API provides us with many date operations.
+most important classes among them are :  
+
+Local : Simplified date-time API with no complexity of timezone handling.
+Zoned : Specialized date-time API to deal with various timezones.
+LocalDate/LocalTime and LocalDateTime API : Use it when time zones are NOT required.
+
+// Java code for LocalDate
+// / LocalTime Function
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+  
+public class Date {
+ 
+public static void LocalDateTimeApi()
+{
+  
+    // the current date
+    LocalDate date = LocalDate.now();
+    System.out.println("the current date is "+
+                        date);
+  
+  
+    // the current time
+    LocalTime time = LocalTime.now();
+    System.out.println("the current time is "+
+                        time);
+      
+  
+    // will give us the current time and date
+    LocalDateTime current = LocalDateTime.now();
+    System.out.println("current date and time : "+
+                        current);
+  
+
+6.Streams API?
+-->Stream API is a newly added feature to the Collections API in Java 8. A stream represents a sequence of elements and supports different operations (Filter, Sort, Map, and Collect) from a collection.
+An Example of How Java Streams Work:
+The simplest way to think of Java streams is to imagine a list of objects disconnected from each other, entering a pipeline one at a time. You can control how many of these objects are entering the pipeline, what you do to them inside it, and how you catch them as they exit the pipeline.
+
+7.for-each in java 8?
+-->Java provides a new method forEach() to iterate the elements. It is defined in Iterable and Stream interface. It is a default method defined in the Iterable interface. Collection classes which extends Iterable interface can use forEach loop to iterate elements.
+
+This method takes a single parameter which is a functional interface. So, you can pass lambda expression as an argument.
+import java.util.ArrayList;  
+import java.util.List;  
+public class ForEachExample {  
+    public static void main(String[] args) {  
+        List<String> gamesList = new ArrayList<String>();  
+        gamesList.add("Football");  
+        gamesList.add("Cricket");  
+        gamesList.add("Chess");  
+        gamesList.add("Hocky");  
+        System.out.println("------------Iterating by passing lambda expression--------------");  
+        gamesList.forEach(games -> System.out.println(games));  
+          
+    }  
+}  
+Output:
+
+------------Iterating by passing lambda expression--------------
+Football
+Cricket
+Chess
+Hocky
+
+8.Nashorn in java 8?
+-->Nashorn: Nashorn is a JavaScript engine which is introduced in JDK 8. With the help of Nashorn, we can execute JavaScript code at Java Virtual Machine. Nashorn is introduced in JDK 8 to replace existing JavaScript engine i.e. Rhino. Nashorn is far better than Rhino in term of performance. The uses of invoking dynamic feature, conversion of JavaScript code into the bytecode directly into the memory etc makes the Nashorn more famous in JDK 8.
+ Executing JavaScript code by using console: For Nashorn engine, Java 8 introduced one new command-line tool i.e.jjs. We have to follow the below steps to execute JavaScript code through the console:
+Create one file named with geeks.js.
+Open geeks.js and write following code into the file and save it.
+   
+var gfg= function(){   
+    print("Welcome to Geeksforgeeks!!!");   
+};   
+gfg();  
+Open CMD, write jjs geeks.js and press enter. It will generate the below output:
+Welcome to Geeksforgeeks!!!
+
+9.why default methods introduced in interface from java 8?
+-->Before Java 8, interfaces could have only abstract methods. The implementation of these methods has to be provided in a separate class. So, if a new method is to be added in an interface, then its implementation code has to be provided in the class implementing the same interface. To overcome this issue, Java 8 has introduced the concept of default methods which allow the interfaces to have methods with implementation without affecting the classes that implement the interface.
+The default methods were introduced to provide backward compatibility.
+   
+// A simple program to Test Interface default 
+// methods in java 
+interface TestInterface 
+{ 
+    // abstract method 
+    public void square(int a); 
+  
+    // default method 
+    default void show() 
+    { 
+      System.out.println("Default Method Executed"); 
+    } 
+} 
+  
+class TestClass implements TestInterface 
+{ 
+    // implementation of square abstract method 
+    public void square(int a) 
+    { 
+        System.out.println(a*a); 
+    } 
+  
+    public static void main(String args[]) 
+    { 
+        TestClass d = new TestClass(); 
+        d.square(4); 
+  
+        // default method executed 
+        d.show(); 
+    } 
+} 
+Output:
+ 16
+ Default Method Executed
+
+10.why static methods in interface from java 8?
+--> Unlike other methods in Interface, these static methods contain the complete definition of the function and therefore these methods can't be overridden or changed in the implementation class.
+Java interface static method is similar to default method except that we cannot override them in the implementation classes. This feature helps us in avoiding undesired results incase of poor implementation in implementation classes.
+
+11.Java I/O improvements in java 8?
+-->Java 8 I/O Enhancements
+A New SelectorProvider which may improve performance or scalability for server.....
+The size of <JDK_HOME>/jre/lib/charsets.jar file is decreased.
+Performance has been improved for the java.lang.String(byte[], ∗) constructor and the java.lang.String.getBytes() method.
+
+12.Base64 encode and decode?
+-->Base 64 is an encoding scheme that converts binary data into text format so that encoded textual data can be easily transported over network un-corrupted and without any data loss.(Base 64 format reference).
+The Basic encoding means the output is mapped to a set of characters in A-Za-z0-9+/ character set and the decoder rejects any character outside of this set.
+Encode simple String into Basic Base 64 format:
+
+String BasicBase64format= Base64.getEncoder().encodeToString(“actualString”.getBytes()); 
+ 
+Explanation: In above code we called Base64.Encoder using getEncoder() and then get the encoded string by passing the byte value of actualString in encodeToString() method as parameter.
+Decode Basic Base 64 format to String 
+
+byte[] actualByte= Base64.getDecoder().decode(encodedString); 
+String actualString= new String(actualByte); 
+ 
+
+
+Explanation: In above code we called Base64.Decoder using getDecoder() and then decoded the string passed in decode() method as parameter then convert return value to string.
+
+13.concurrency enhancements in java 8?
+-->Important Java 8 concurrency enhancements:
+Stream API, Lambda expressions and Parallel streams.
+Parallel sort for arrays.
+Default ForkJoinPool: Common pool.
+CountedCompleter.
+CompletableFuture.
+Double Adder, LongAdder, DoubleAccumulator, LongAccumulator.
